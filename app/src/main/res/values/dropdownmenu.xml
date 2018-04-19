@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="blizzdropdown">
+
+        <item>Character Profile</item>
+        <item>Character Titles</item>
+        <item>PvP Leaderboard</item>
+        <item>PvP Information</item>
+
+    </string-array>
+</resources>

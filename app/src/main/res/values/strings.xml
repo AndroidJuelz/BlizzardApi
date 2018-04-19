@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Blizzard</string>
+    <string name="charname"><font color="red">Please enter your charactername</font></string>
+    <string name="realm">Please enter your realm</string>
+    <string name="Request">Request</string>
+    <string name="mainmenu">Go back to main menu</string>
+    <string name="cutoff">Past title cutoffs</string>
+    <string name="blizzardhomepage"><a href="http://blizzard.com/"><font color="black">Blizzards Homepage</font></a></string>
+</resources>
