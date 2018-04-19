@@ -4,17 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scholler.blizzard.Model.CutOffs;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TitleCutoffsActivity extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener {
@@ -34,7 +30,7 @@ public class TitleCutoffsActivity extends AppCompatActivity implements RecyclerV
 
         CutOffs cutOffs = new CutOffs();
 
-        ratings = cutOffs.returnRatingFromSelectedSeason(2);
+        ratings = cutOffs.returnAllianceRatingCutoffs();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

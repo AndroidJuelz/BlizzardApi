@@ -170,6 +170,9 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
         //userIsInteraction boolean blocks the instantly jumping to a new activity when MainActivity is started
         //it waits for the first userInteraction (overridden method)
+
+
+
         if(userIsInteracting) {
 
             itemSelected = adapterView.getItemAtPosition(i).toString();

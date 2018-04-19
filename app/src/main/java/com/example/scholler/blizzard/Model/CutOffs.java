@@ -18,200 +18,169 @@ public class CutOffs {
     private int duelistCutoffH;
     private int gladiatorCutoffH;
     private int rankoneCutoffH;
-    public List<Integer> ints;
+    public List<Integer> allianceInts;
+    public List<Integer> hordeInts;
     public List<String> seasons;
 
 
-    public ArrayList<Integer> returnRatingFromSelectedSeason(int selectedSeason) {
-        this.selectedSeason = selectedSeason;
+    public ArrayList<Integer> returnHordeRatingCutoffs() {
+
+        ArrayList<Integer> hordeInts = new ArrayList<>();
+        this.hordeInts = hordeInts;
+
+        challengerCutoffH = 1610;
+        rivalCutoffH      = 1880;
+        duelistCutoffH    = 2140;
+        gladiatorCutoffH  = 2610;
+        rankoneCutoffH    = 2860;
+
+        hordeInts.add(challengerCutoffH);
+        hordeInts.add(rivalCutoffH);
+        hordeInts.add(duelistCutoffH);
+        hordeInts.add(gladiatorCutoffH);
+        hordeInts.add(rankoneCutoffH);
+
+        challengerCutoffH = 1594;
+        rivalCutoffH      = 1864;
+        duelistCutoffH    = 2145;
+        gladiatorCutoffH  = 2597;
+        rankoneCutoffH    = 2837;
+
+        hordeInts.add(challengerCutoffH);
+        hordeInts.add(rivalCutoffH);
+        hordeInts.add(duelistCutoffH);
+        hordeInts.add(gladiatorCutoffH);
+        hordeInts.add(rankoneCutoffH);
+
+        challengerCutoffH = 1564;
+        rivalCutoffH      = 1822;
+        duelistCutoffH    = 2096;
+        gladiatorCutoffH  = 2559;
+        rankoneCutoffH    = 2804;
+
+        hordeInts.add(challengerCutoffH);
+        hordeInts.add(rivalCutoffH);
+        hordeInts.add(duelistCutoffH);
+        hordeInts.add(gladiatorCutoffH);
+        hordeInts.add(rankoneCutoffH);
+
+        challengerCutoffH = 1615;
+        rivalCutoffH      = 1904;
+        duelistCutoffH    = 2202;
+        gladiatorCutoffH  = 2712;
+        rankoneCutoffH    = 2963;
+
+        hordeInts.add(challengerCutoffH);
+        hordeInts.add(rivalCutoffH);
+        hordeInts.add(duelistCutoffH);
+        hordeInts.add(gladiatorCutoffH);
+        hordeInts.add(rankoneCutoffH);
+
+        challengerCutoffH = 1634;
+        rivalCutoffH      = 1939;
+        duelistCutoffH    = 2216;
+        gladiatorCutoffH  = 2674;
+        rankoneCutoffH    = 2991;
+
+        hordeInts.add(challengerCutoffH);
+        hordeInts.add(rivalCutoffH);
+        hordeInts.add(duelistCutoffH);
+        hordeInts.add(gladiatorCutoffH);
+        hordeInts.add(rankoneCutoffH);
+
+        return hordeInts;
+    }
+
+    public ArrayList<Integer> returnAllianceRatingCutoffs() {
 
 
-        ArrayList<Integer> ints = new ArrayList<Integer>();
-        this.ints = ints;
+        ArrayList<Integer> allianceInts = new ArrayList<>();
+        this.allianceInts = allianceInts;
 
-        /*When the ratings were initialized note that they were added
-        * in another order,
-        * it should be done like this lowest alliance rank rating followed
-        * by lowest horde then next alliance next horde*/
-
-        switch (selectedSeason) {
-            case 1:
-                gladiatorCutoffA = 2610;
-                rankoneCutoffA   = 2928;
-                gladiatorCutoffH = 2455;
-                rankoneCutoffH   = 2754;
-
-
-                ints.add(gladiatorCutoffA);
-                ints.add(gladiatorCutoffH);
-                ints.add(rankoneCutoffA);
-                ints.add(rankoneCutoffH);
-                break;
-
-            case 2:
                 challengerCutoffA = 1650;
                 rivalCutoffA      = 1970;
                 duelistCutoffA    = 2270;
                 gladiatorCutoffA  = 2740;
                 rankoneCutoffA    = 2980;
 
-                challengerCutoffH = 1610;
-                rivalCutoffH      = 1880;
-                duelistCutoffH    = 2140;
-                gladiatorCutoffH  = 2610;
-                rankoneCutoffH    = 2860;
+                allianceInts.add(challengerCutoffA);
+                allianceInts.add(rivalCutoffA);
+                allianceInts.add(duelistCutoffA);
+                allianceInts.add(gladiatorCutoffA);
+                allianceInts.add(rankoneCutoffA);
 
-
-                ints.add(challengerCutoffA);
-                ints.add(rivalCutoffA);
-                ints.add(duelistCutoffA);
-                ints.add(gladiatorCutoffA);
-                ints.add(rankoneCutoffA);
-
-                ints.add(challengerCutoffH);
-                ints.add(rivalCutoffH);
-                ints.add(duelistCutoffH);
-                ints.add(gladiatorCutoffH);
-                ints.add(rankoneCutoffH);
-            break;
-
-            case 3:
                 challengerCutoffA = 1618;
                 rivalCutoffA      = 1928;
                 duelistCutoffA    = 2215;
                 gladiatorCutoffA  = 2701;
                 rankoneCutoffA    = 2979;
 
-                challengerCutoffH = 1594;
-                rivalCutoffH      = 1864;
-                duelistCutoffH    = 2145;
-                gladiatorCutoffH  = 2597;
-                rankoneCutoffH    = 2837;
+                allianceInts.add(challengerCutoffA);
+                allianceInts.add(rivalCutoffA);
+                allianceInts.add(duelistCutoffA);
+                allianceInts.add(gladiatorCutoffA);
+                allianceInts.add(rankoneCutoffA);
 
 
-                ints.add(challengerCutoffA);
-                ints.add(challengerCutoffH);
-                ints.add(rivalCutoffA);
-                ints.add(rivalCutoffH);
-                ints.add(duelistCutoffA);
-                ints.add(duelistCutoffH);
-                ints.add(gladiatorCutoffA);
-                ints.add(rankoneCutoffA);
-                ints.add(gladiatorCutoffH);
-                ints.add(rankoneCutoffH);
-            break;
 
-            case 4:
                 challengerCutoffA = 1585;
                 rivalCutoffA      = 1867;
                 duelistCutoffA    = 2127;
                 gladiatorCutoffA  = 2571;
                 rankoneCutoffA    = 2870;
 
-                challengerCutoffH = 1564;
-                rivalCutoffH      = 1822;
-                duelistCutoffH    = 2096;
-                gladiatorCutoffH  = 2559;
-                rankoneCutoffH    = 2804;
+                allianceInts.add(challengerCutoffA);
+                allianceInts.add(rivalCutoffA);
+                allianceInts.add(duelistCutoffA);
+                allianceInts.add(gladiatorCutoffA);
+                allianceInts.add(rankoneCutoffA);
 
-                ints.add(challengerCutoffA);
-                ints.add(challengerCutoffH);
-                ints.add(rivalCutoffA);
-                ints.add(rivalCutoffH);
-                ints.add(duelistCutoffA);
-                ints.add(duelistCutoffH);
-                ints.add(gladiatorCutoffA);
-                ints.add(rankoneCutoffA);
-                ints.add(gladiatorCutoffH);
-                ints.add(rankoneCutoffH);
-            break;
 
-            case 5:
+
                 challengerCutoffA = 1636;
                 rivalCutoffA      = 1952;
                 duelistCutoffA    = 2221;
                 gladiatorCutoffA  = 2689;
                 rankoneCutoffA    = 2959;
 
-                challengerCutoffH = 1615;
-                rivalCutoffH      = 1904;
-                duelistCutoffH    = 2202;
-                gladiatorCutoffH  = 2712;
-                rankoneCutoffH    = 2963;
+                allianceInts.add(challengerCutoffA);
+                allianceInts.add(rivalCutoffA);
+                allianceInts.add(duelistCutoffA);
+                allianceInts.add(gladiatorCutoffA);
+                allianceInts.add(rankoneCutoffA);
 
-                ints.add(challengerCutoffA);
-                ints.add(challengerCutoffH);
-                ints.add(rivalCutoffA);
-                ints.add(rivalCutoffH);
-                ints.add(duelistCutoffA);
-                ints.add(duelistCutoffH);
-                ints.add(gladiatorCutoffA);
-                ints.add(rankoneCutoffA);
-                ints.add(gladiatorCutoffH);
-                ints.add(rankoneCutoffH);
-            break;
-
-            case 6:
                 challengerCutoffA = 1661;
                 rivalCutoffA      = 2002;
                 duelistCutoffA    = 2281;
                 gladiatorCutoffA  = 2779;
                 rankoneCutoffA    = 3079;
 
-                challengerCutoffH = 1634;
-                rivalCutoffH      = 1939;
-                duelistCutoffH    = 2216;
-                gladiatorCutoffH  = 2674;
-                rankoneCutoffH    = 2991;
+                allianceInts.add(challengerCutoffA);
+                allianceInts.add(rivalCutoffA);
+                allianceInts.add(duelistCutoffA);
+                allianceInts.add(gladiatorCutoffA);
+                allianceInts.add(rankoneCutoffA);
 
-                ints.add(challengerCutoffA);
-                ints.add(challengerCutoffH);
-                ints.add(rivalCutoffA);
-                ints.add(rivalCutoffH);
-                ints.add(duelistCutoffA);
-                ints.add(duelistCutoffH);
-                ints.add(gladiatorCutoffA);
-                ints.add(rankoneCutoffA);
-                ints.add(gladiatorCutoffH);
-                ints.add(rankoneCutoffH);
+                return allianceInts;
 
         }
-        return ints;
-    }
 
-    public ArrayList<String> returnSeasons(int selectedSeason) {
-        this.selectedSeason = selectedSeason;
+
+    public ArrayList<String> returnSeasons() {
+
 
         ArrayList<String> seasons = new ArrayList<>();
         this.seasons = seasons;
 
-        switch (selectedSeason) {
-            case 1:
-                String season1 = "Season 1";
-                seasons.add(season1);
-                break;
-            case 2:
-                String season2 = "Season 2";
-                seasons.add(season2);
-                break;
-            case 3:
-                String season3 = "Season 3";
-                seasons.add(season3);
-                break;
-            case 4:
-                String season4 = "Season 4";
-                seasons.add(season4);
-                break;
-            case 5:
-                String season5 = "Season 5";
-                seasons.add(season5);
-                break;
-            case 6:
-                String season6 = "Season 6";
-                seasons.add(season6);
-                break;
+        seasons.add("Season One");
+        seasons.add("Season Two");
+        seasons.add("Season Three");
+        seasons.add("Season Four");
+        seasons.add("Season Five");
+        seasons.add("Season Six");
+
+        return seasons;
         }
-            return seasons;
     }
 
-}
+
