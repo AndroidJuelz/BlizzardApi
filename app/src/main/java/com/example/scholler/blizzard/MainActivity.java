@@ -77,14 +77,27 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     @OnClick(R.id.buttonRequest)
     public void whenRequestButtonIsClicked() {
 
-        realm         = editTextRealm.getText().toString();
+        realm = editTextRealm.getText().toString();
         characterName = editTextChar.getText().toString();
 
 
-        if(realm.matches("") || characterName.matches("")) {
-            Toast.makeText(getApplicationContext(), "You must not leave fields empty", Toast.LENGTH_LONG).show();
-            return;
+        if (itemSelectedNum == 5) {
+
+            Intent titles = new Intent(getApplicationContext(), TitleCutoffsActivity.class);
+            startActivity(titles);
+
+        } else if (itemSelectedNum == 3) {
+
+            Intent leaderboard = new Intent(getApplicationContext(), LeaderboardActivity.class);
+            startActivity(leaderboard);
+        } else {
+
+            if (realm.matches("") || characterName.matches("")) {
+
+                Toast.makeText(getApplicationContext(), "You must not leave fields empty", Toast.LENGTH_LONG).show();
+                return;
         }
+    }
 
         RetrofitClass retrofitClass = new RetrofitClass(this);
 
@@ -95,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
         }else if(itemSelectedNum == 3) {
 
-            retrofitClass.sendApiRequestLeaderboard(realm, characterName);
+
 
         }else if(itemSelectedNum == 2) {
 
@@ -114,48 +127,48 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     public void onSuccess(JsonResponseModel.Scan model) {
 
 
-        if(model != null && itemSelectedNum == 4) {
+            if (model != null && itemSelectedNum == 4) {
 
             rating2v2 = model.pvp.brackets.aRENABRACKET2v2.getRating();
             rating3v3 = model.pvp.brackets.aRENABRACKET3v3.getRating();
 
             gamesPlayed2s = model.pvp.brackets.aRENABRACKET2v2.getSeasonPlayed();
-            gamesWon2s    = model.pvp.brackets.aRENABRACKET2v2.getSeasonWon();
+            gamesWon2s = model.pvp.brackets.aRENABRACKET2v2.getSeasonWon();
 
             gamesPlayed3s = model.pvp.brackets.aRENABRACKET3v3.getSeasonPlayed();
-            gamesWon3s    = model.pvp.brackets.aRENABRACKET3v3.getSeasonWon();
+            gamesWon3s = model.pvp.brackets.aRENABRACKET3v3.getSeasonWon();
 
 
             Log.d("ApiResponse", model.pvp.brackets.aRENABRACKET3v3.getRating().toString());
             Log.d("ApiResponse", model.pvp.brackets.aRENABRACKET2v2.getRating().toString());
 
             Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
-                i.putExtra("realm", realm);
-                i.putExtra("characterName", characterName);
-                i.putExtra("rating2v2", rating2v2);
-                i.putExtra("rating3v3", rating3v3);
-                i.putExtra("played2s", gamesPlayed2s);
-                i.putExtra("won2s", gamesWon2s);
-                i.putExtra("played3s", gamesPlayed3s);
-                i.putExtra("won3s", gamesWon3s);
+            i.putExtra("realm", realm);
+            i.putExtra("characterName", characterName);
+            i.putExtra("rating2v2", rating2v2);
+            i.putExtra("rating3v3", rating3v3);
+            i.putExtra("played2s", gamesPlayed2s);
+            i.putExtra("won2s", gamesWon2s);
+            i.putExtra("played3s", gamesPlayed3s);
+            i.putExtra("won3s", gamesWon3s);
             startActivity(i);
 
-        } else if(model != null && itemSelectedNum == 3) {
+        } else if (model != null && itemSelectedNum == 3) {
 
             //ToDo: This intent is for test purpose, needs to be removed later
             Intent i3 = new Intent(getApplicationContext(), TitleCutoffsActivity.class);
             startActivity(i3);
 
-        } else if(model != null && itemSelectedNum == 2) {
+        } else if (model != null && itemSelectedNum == 2) {
 
-        } else if(model!= null && itemSelectedNum == 1) {
+        } else if (model != null && itemSelectedNum == 1) {
 
             acvPoints = model.achievementPoints;
 
             Intent i2 = new Intent(getApplicationContext(), CharProfileActivity.class);
-                i2.putExtra("realm", realm);
-                i2.putExtra("characterName", characterName);
-                i2.putExtra("acvpoints", acvPoints);
+            i2.putExtra("realm", realm);
+            i2.putExtra("characterName", characterName);
+            i2.putExtra("acvpoints", acvPoints);
             startActivity(i2);
 
         } else {
@@ -170,8 +183,6 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
         //userIsInteraction boolean blocks the instantly jumping to a new activity when MainActivity is started
         //it waits for the first userInteraction (overridden method)
-
-
 
         if(userIsInteracting) {
 
@@ -203,6 +214,11 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
                 itemSelectedNum = 4;
                 edittextCheck = true;
+                editTextChar.setEnabled(edittextCheck);
+                editTextRealm.setEnabled(edittextCheck);
+            } else if(itemSelected.equals("Past Title Cutoffs")) {
+                itemSelectedNum = 5;
+                edittextCheck = false;
                 editTextChar.setEnabled(edittextCheck);
                 editTextRealm.setEnabled(edittextCheck);
             }

@@ -40,7 +40,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         if(cutOffs == null) {
+
             cutOffs = new CutOffs();
+
         }
 
         if(position < 5) {
@@ -198,12 +200,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.textViewCutoffH.setText(String.valueOf("Horde Rank One" + "\n " + ratingsHorde.get(position)));
 
         }
-
-
-
-
-
-
 
     }
 
