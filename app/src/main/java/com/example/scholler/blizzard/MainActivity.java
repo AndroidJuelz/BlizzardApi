@@ -38,9 +38,10 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
     private String characterName;
     private String realm;
-    private String _class;
-    private String race;
+    private int _class;
+    private int race;
     private String faction;
+    private String bracket;
     private Integer rating2v2;
     private Integer rating3v3;
     private int     charLevel;
@@ -82,22 +83,20 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
 
         if (itemSelectedNum == 5) {
-
             Intent titles = new Intent(getApplicationContext(), TitleCutoffsActivity.class);
             startActivity(titles);
 
         } else if (itemSelectedNum == 3) {
 
-            Intent leaderboard = new Intent(getApplicationContext(), LeaderboardActivity.class);
-            startActivity(leaderboard);
         } else {
 
             if (realm.matches("") || characterName.matches("")) {
-
-                Toast.makeText(getApplicationContext(), "You must not leave fields empty", Toast.LENGTH_LONG).show();
-                return;
+                    Toast.makeText(getApplicationContext(), "You must not leave fields empty", Toast.LENGTH_LONG).show();
+                    return;
         }
     }
+//_____________________________________________________________________________________________________________________________________________________________
+//The code above is just to check if the fields are empty
 
         RetrofitClass retrofitClass = new RetrofitClass(this);
 
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
         }else if(itemSelectedNum == 3) {
 
-
+            retrofitClass.sendApiRequestLeaderboard();
 
         }else if(itemSelectedNum == 2) {
 
@@ -118,7 +117,8 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
             retrofitClass.sendApiRequestProfile(realm, characterName);
 
-        }
+    }
+
 
     }
 
@@ -155,20 +155,24 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
         } else if (model != null && itemSelectedNum == 3) {
 
-            //ToDo: This intent is for test purpose, needs to be removed later
-            Intent i3 = new Intent(getApplicationContext(), TitleCutoffsActivity.class);
-            startActivity(i3);
+            characterName = model.getName();
+            rating3v3     = model.pvp.brackets.aRENABRACKET3v3.getRating();
+            Log.d("charactername", characterName);
 
         } else if (model != null && itemSelectedNum == 2) {
 
         } else if (model != null && itemSelectedNum == 1) {
 
             acvPoints = model.achievementPoints;
+            race      = model.race;
+            _class    = model._class;
 
             Intent i2 = new Intent(getApplicationContext(), CharProfileActivity.class);
             i2.putExtra("realm", realm);
             i2.putExtra("characterName", characterName);
             i2.putExtra("acvpoints", acvPoints);
+            i2.putExtra("race", race);
+            i2.putExtra("class", _class);
             startActivity(i2);
 
         } else {
@@ -207,8 +211,8 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
                 itemSelectedNum = 3;
                 edittextCheck = false;
-                editTextChar.setEnabled(edittextCheck);
                 editTextRealm.setEnabled(edittextCheck);
+                editTextChar.setEnabled(edittextCheck);
 
             } else if(itemSelected.equals("PvP Information")) {
 
@@ -216,7 +220,9 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
                 edittextCheck = true;
                 editTextChar.setEnabled(edittextCheck);
                 editTextRealm.setEnabled(edittextCheck);
+
             } else if(itemSelected.equals("Past Title Cutoffs")) {
+
                 itemSelectedNum = 5;
                 edittextCheck = false;
                 editTextChar.setEnabled(edittextCheck);
@@ -290,19 +296,19 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
         this.realm = realm;
     }
 
-    public String get_class() {
+    public int get_class() {
         return _class;
     }
 
-    public void set_class(String _class) {
+    public void set_class(int _class) {
         this._class = _class;
     }
 
-    public String getRace() {
+    public int getRace() {
         return race;
     }
 
-    public void setRace(String race) {
+    public void setRace(int race) {
         this.race = race;
     }
 

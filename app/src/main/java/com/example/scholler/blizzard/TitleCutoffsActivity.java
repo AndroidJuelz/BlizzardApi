@@ -15,8 +15,6 @@ import butterknife.ButterKnife;
 
 public class TitleCutoffsActivity extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener {
 
-
-
     RecyclerViewAdapter recyclerViewAdapter;
 
     ArrayList<Integer> ratings;

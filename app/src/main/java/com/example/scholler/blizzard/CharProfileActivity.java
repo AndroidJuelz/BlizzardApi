@@ -25,8 +25,16 @@ public class CharProfileActivity extends AppCompatActivity {
     @BindView(R.id.imageViewMenu2)
     ImageView imageViewMenu2;
 
+    @BindView(R.id.textViewClass)
+    TextView textViewClass;
+
+    @BindView(R.id.textViewRace)
+    TextView textViewRace;
+
     protected String characterName;
     protected String realm;
+    protected int _class;
+    protected int race;
     protected int acvPoints;
 
     @Override
@@ -38,10 +46,14 @@ public class CharProfileActivity extends AppCompatActivity {
         characterName = getIntent().getStringExtra("characterName");
         realm         = getIntent().getStringExtra("realm");
         acvPoints     = getIntent().getIntExtra("acvpoints", 0);
+        _class        = getIntent().getIntExtra("class", 0);
+        race          = getIntent().getIntExtra("race", 0);
 
         textViewName.setText(characterName);
         textViewRealm.setText(realm);
         textViewAcvPoints.setText(String.valueOf(acvPoints));
+        textViewClass.setText(String.valueOf(_class));
+        textViewRace.setText(String.valueOf(race));
 
 
     }

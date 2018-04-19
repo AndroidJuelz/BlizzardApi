@@ -118,7 +118,7 @@ public class RetrofitClass extends MainActivity {
         });
     }
 
-    public void sendApiRequestLeaderboard(String realm, String characterName) {
+    public void sendApiRequestLeaderboard() {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BaseURL)
@@ -127,7 +127,7 @@ public class RetrofitClass extends MainActivity {
 
         InterfaceAPI interfaceAPI = retrofit.create(InterfaceAPI.class);
 
-        Call<JsonResponseModel.Scan> call = interfaceAPI.pvpResponse(realm, characterName);
+        Call<JsonResponseModel.Scan> call = interfaceAPI.pvpLeaderboard();
 
 
         call.enqueue(new Callback<JsonResponseModel.Scan>() {

@@ -26,8 +26,8 @@ public interface InterfaceAPI {
     Call<JsonResponseModel.Scan> getTitles(@Path("realm") String realm,
                                            @Path("characterName") String characterName);
 
-    @GET("leaderboard/{bracket}?locale=de_DE&apikey=6jnxpjv5duhynpajsjxb4tgueukm7jk4")
-    Call<JsonResponseModel.Scan> pvpLeaderboard(@Path("bracket") String bracket);
+    @GET("leaderboard/3v3?locale=de_DE&apikey=6jnxpjv5duhynpajsjxb4tgueukm7jk4")
+    Call<JsonResponseModel.Scan> pvpLeaderboard();
 
 
 

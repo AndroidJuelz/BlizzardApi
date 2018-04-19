@@ -68,8 +68,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
 
 
-
-
         ratingsAlliance = cutOffs.returnAllianceRatingCutoffs();
         ratingsHorde    = cutOffs.returnHordeRatingCutoffs();
         seasons = cutOffs.returnSeasons();
