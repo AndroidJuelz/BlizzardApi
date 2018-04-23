@@ -16,12 +16,16 @@ import com.example.scholler.blizzard.Model.JsonResponseModel;
 import com.example.scholler.blizzard.networking.RetrofitClass;
 
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends AppCompatActivity implements OnJsonResponseListener, AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements OnJsonResponseListener, AdapterView.OnItemSelectedListener, Serializable {
 
 
     @BindView(R.id.spinner)
@@ -56,6 +60,10 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
     public String itemSelected;
     public int itemSelectedNum;
+
+    public List<JsonResponseModel.Title> titles;
+
+
 
 
 
@@ -95,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
                     return;
         }
     }
-//_____________________________________________________________________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________
 //The code above is just to check if the fields are empty
 
         RetrofitClass retrofitClass = new RetrofitClass(this);
@@ -155,11 +163,15 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
         } else if (model != null && itemSelectedNum == 3) {
 
-            characterName = model.getName();
-            rating3v3     = model.pvp.brackets.aRENABRACKET3v3.getRating();
-            Log.d("charactername", characterName);
+//            characterName = model.getName();
+//            rating3v3     = model.pvp.brackets.aRENABRACKET3v3.getRating();
+//            Log.d("charactername", characterName);
 
         } else if (model != null && itemSelectedNum == 2) {
+
+             titles = model.getTitles();
+
+
 
         } else if (model != null && itemSelectedNum == 1) {
 

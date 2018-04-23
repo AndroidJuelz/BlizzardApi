@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class JsonResponseModel {
 
 
@@ -278,6 +280,9 @@ public class JsonResponseModel {
         @SerializedName("faction")
         @Expose
         public Integer faction;
+        @SerializedName("titles")
+        @Expose
+        public List<Title> titles;
         @SerializedName("pvp")
         @Expose
         public PvP pvp;
@@ -390,7 +395,53 @@ public class JsonResponseModel {
         public void setTotalHonorableKills(Integer totalHonorableKills) {
             this.totalHonorableKills = totalHonorableKills;
         }
+
+        public List<Title> getTitles() {
+            return titles;
+        }
+
+        public void setTitles(List<Title> titles) {
+            this.titles = titles;
+        }
     }
+    public class Title {
+
+        @SerializedName("id")
+        @Expose
+        public Integer id;
+        @SerializedName("name")
+        @Expose
+        public String name;
+        @SerializedName("selected")
+        @Expose
+        public Boolean selected;
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Boolean getSelected() {
+            return selected;
+        }
+
+        public void setSelected(Boolean selected) {
+            this.selected = selected;
+        }
+    }
+
+
 
 }
 

@@ -23,8 +23,8 @@ public interface InterfaceAPI {
                                                   @Path("characterName") String characterName);
 
     @GET("character/{realm}/{characterName}?fields=titles&locale=de_DE&apikey=6jnxpjv5duhynpajsjxb4tgueukm7jk4")
-    Call<JsonResponseModel.Scan> getTitles(@Path("realm") String realm,
-                                           @Path("characterName") String characterName);
+    Call<JsonResponseModel.Scan> characterTitles(@Path("realm") String realm,
+                                                 @Path("characterName") String characterName);
 
     @GET("leaderboard/3v3?locale=de_DE&apikey=6jnxpjv5duhynpajsjxb4tgueukm7jk4")
     Call<JsonResponseModel.Scan> pvpLeaderboard();
