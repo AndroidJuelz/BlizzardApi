@@ -64,9 +64,6 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     public List<JsonResponseModel.Title> titles;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
