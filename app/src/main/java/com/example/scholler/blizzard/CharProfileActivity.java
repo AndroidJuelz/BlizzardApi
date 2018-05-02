@@ -35,6 +35,8 @@ public class CharProfileActivity extends AppCompatActivity {
     protected String realm;
     protected int _class;
     protected int race;
+    private String raceString;
+    private String classString;
     protected int acvPoints;
 
     @Override
@@ -43,17 +45,24 @@ public class CharProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_char_profile);
         ButterKnife.bind(this);
 
+        RaceChecker raceChecker = new RaceChecker();
+        ClassChecker classChecker = new ClassChecker();
+
         characterName = getIntent().getStringExtra("characterName");
         realm         = getIntent().getStringExtra("realm");
         acvPoints     = getIntent().getIntExtra("acvpoints", 0);
         _class        = getIntent().getIntExtra("class", 0);
         race          = getIntent().getIntExtra("race", 0);
 
+        raceString = raceChecker.checkForRace(race);
+        classString = classChecker.checkForClass(_class);
+
+
         textViewName.setText(characterName);
         textViewRealm.setText(realm);
         textViewAcvPoints.setText(String.valueOf(acvPoints));
-        textViewClass.setText(String.valueOf(_class));
-        textViewRace.setText(String.valueOf(race));
+        textViewClass.setText(String.valueOf(classString));
+        textViewRace.setText(String.valueOf(raceString));
 
 
     }
