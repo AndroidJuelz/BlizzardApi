@@ -22,8 +22,8 @@ public class ActivityCharacterTitles extends AppCompatActivity implements Serial
         ButterKnife.bind(this);
 
 
+        //ToDo: needs to be finished
 
 
     }
-
 }

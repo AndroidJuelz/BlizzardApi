@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     private int race;
     private String faction;
     private String bracket;
+    private String imageUrl;
     private Integer rating2v2;
     private Integer rating3v3;
     private int     charLevel;
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     private int gamesPlayed2s;
     private int gamesPlayed3s;
     private int gamesWon3s;
+    private String name;
+    private int id;
+    private boolean selected;
 
     private boolean userIsInteracting;
     private boolean edittextCheck;
@@ -122,9 +126,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
             retrofitClass.sendApiRequestProfile(realm, characterName);
 
-    }
-
-
+        }
     }
 
 
@@ -134,28 +136,28 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
             if (model != null && itemSelectedNum == 4) {
 
-            rating2v2 = model.pvp.brackets.aRENABRACKET2v2.getRating();
-            rating3v3 = model.pvp.brackets.aRENABRACKET3v3.getRating();
+                rating2v2 = model.pvp.brackets.aRENABRACKET2v2.getRating();
+                rating3v3 = model.pvp.brackets.aRENABRACKET3v3.getRating();
 
-            gamesPlayed2s = model.pvp.brackets.aRENABRACKET2v2.getSeasonPlayed();
-            gamesWon2s = model.pvp.brackets.aRENABRACKET2v2.getSeasonWon();
+                gamesPlayed2s = model.pvp.brackets.aRENABRACKET2v2.getSeasonPlayed();
+                gamesWon2s = model.pvp.brackets.aRENABRACKET2v2.getSeasonWon();
 
-            gamesPlayed3s = model.pvp.brackets.aRENABRACKET3v3.getSeasonPlayed();
-            gamesWon3s = model.pvp.brackets.aRENABRACKET3v3.getSeasonWon();
+                gamesPlayed3s = model.pvp.brackets.aRENABRACKET3v3.getSeasonPlayed();
+                gamesWon3s = model.pvp.brackets.aRENABRACKET3v3.getSeasonWon();
 
 
             Log.d("ApiResponse", model.pvp.brackets.aRENABRACKET3v3.getRating().toString());
             Log.d("ApiResponse", model.pvp.brackets.aRENABRACKET2v2.getRating().toString());
 
             Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
-            i.putExtra("realm", realm);
-            i.putExtra("characterName", characterName);
-            i.putExtra("rating2v2", rating2v2);
-            i.putExtra("rating3v3", rating3v3);
-            i.putExtra("played2s", gamesPlayed2s);
-            i.putExtra("won2s", gamesWon2s);
-            i.putExtra("played3s", gamesPlayed3s);
-            i.putExtra("won3s", gamesWon3s);
+                i.putExtra("realm", realm);
+                i.putExtra("characterName", characterName);
+                i.putExtra("rating2v2", rating2v2);
+                i.putExtra("rating3v3", rating3v3);
+                i.putExtra("played2s", gamesPlayed2s);
+                i.putExtra("won2s", gamesWon2s);
+                i.putExtra("played3s", gamesPlayed3s);
+                i.putExtra("won3s", gamesWon3s);
             startActivity(i);
 
         } else if (model != null && itemSelectedNum == 3) {
@@ -166,7 +168,9 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
         } else if (model != null && itemSelectedNum == 2) {
 
-             titles = model.getTitles();
+
+
+            //ToDo: HOW TO INITIALIZE JSON LIST??!
 
 
 
@@ -175,13 +179,16 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
             acvPoints = model.achievementPoints;
             race      = model.race;
             _class    = model._class;
+            imageUrl  = model.thumbnail;
+
 
             Intent i2 = new Intent(getApplicationContext(), CharProfileActivity.class);
-            i2.putExtra("realm", realm);
-            i2.putExtra("characterName", characterName);
-            i2.putExtra("acvpoints", acvPoints);
-            i2.putExtra("race", race);
-            i2.putExtra("class", _class);
+                i2.putExtra("realm", realm);
+                i2.putExtra("characterName", characterName);
+                i2.putExtra("acvpoints", acvPoints);
+                i2.putExtra("race", race);
+                i2.putExtra("class", _class);
+                i2.putExtra("thumbnail", imageUrl);
             startActivity(i2);
 
         } else {
@@ -196,6 +203,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
         //userIsInteraction boolean blocks the instantly jumping to a new activity when MainActivity is started
         //it waits for the first userInteraction (overridden method)
+            itemSelectedNum = 1;
 
         if(userIsInteracting) {
 
@@ -403,4 +411,11 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
         this.acvPoints = acvPoints;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }

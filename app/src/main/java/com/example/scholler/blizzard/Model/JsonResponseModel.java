@@ -404,7 +404,10 @@ public class JsonResponseModel {
             this.titles = titles;
         }
     }
+
+
     public class Title {
+
 
         @SerializedName("id")
         @Expose
