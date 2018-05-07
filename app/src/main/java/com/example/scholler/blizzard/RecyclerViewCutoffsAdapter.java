@@ -2,8 +2,6 @@ package com.example.scholler.blizzard;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +13,7 @@ import com.example.scholler.blizzard.Model.CutOffs;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewCutoffsAdapter extends RecyclerView.Adapter<RecyclerViewCutoffsAdapter.ViewHolder> {
 
 
     private ArrayList<Integer> ratingsAlliance;
@@ -31,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     // data is passed into the constructor
-    RecyclerViewAdapter(Context context, ArrayList<Integer> data) {
+    RecyclerViewCutoffsAdapter(Context context, ArrayList<Integer> data) {
         this.mInflater = LayoutInflater.from(context);
         this.ratingsAlliance = data;
     }
@@ -222,6 +220,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return ratingsAlliance.size();
     }
 
+    public interface ItemClickListener {
+    }
+
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -248,12 +249,4 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return ratingsAlliance.get(id);
     }
 
-
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
-    public int getPosition() {
-        return position;
-    }
 }

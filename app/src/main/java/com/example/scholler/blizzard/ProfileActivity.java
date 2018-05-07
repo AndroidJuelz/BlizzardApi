@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scholler.blizzard.Events.OnJsonResponseListener;
+import com.example.scholler.blizzard.Model.JsonResponseLeaderboard;
 import com.example.scholler.blizzard.Model.JsonResponseModel;
 
 import butterknife.BindView;
@@ -84,6 +85,11 @@ public class ProfileActivity extends AppCompatActivity implements OnJsonResponse
 
     @Override
     public void onSuccess(JsonResponseModel.Scan jsonResponseModel) {
+
+    }
+
+    @Override
+    public void onSuccess2(JsonResponseLeaderboard.Scan jsonleaderboard) {
 
     }
 

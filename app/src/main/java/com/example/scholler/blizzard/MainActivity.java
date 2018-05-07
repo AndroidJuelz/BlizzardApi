@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.scholler.blizzard.Events.OnJsonResponseListener;
+import com.example.scholler.blizzard.Model.JsonResponseLeaderboard;
 import com.example.scholler.blizzard.Model.JsonResponseModel;
 import com.example.scholler.blizzard.networking.RetrofitClass;
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     private int gamesPlayed2s;
     private int gamesPlayed3s;
     private int gamesWon3s;
+    private int ranking;
     private String name;
     private int id;
     private boolean selected;
@@ -162,15 +164,13 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
 
         } else if (model != null && itemSelectedNum == 3) {
 
-//            characterName = model.getName();
-//            rating3v3     = model.pvp.brackets.aRENABRACKET3v3.getRating();
-//            Log.d("charactername", characterName);
+
+
 
         } else if (model != null && itemSelectedNum == 2) {
 
+                titles = model.titles;
 
-
-            //ToDo: HOW TO INITIALIZE JSON LIST??!
 
 
 
@@ -199,11 +199,16 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     }
 
     @Override
+    public void onSuccess2(JsonResponseLeaderboard.Scan jsonleaderboard) {
+
+    }
+
+    @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
         //userIsInteraction boolean blocks the instantly jumping to a new activity when MainActivity is started
         //it waits for the first userInteraction (overridden method)
-            itemSelectedNum = 1;
+                itemSelectedNum = 1;
 
         if(userIsInteracting) {
 

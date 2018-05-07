@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +39,12 @@ public class CharProfileActivity extends AppCompatActivity {
     @BindView(R.id.textViewRace)
     TextView textViewRace;
 
+    @BindView(R.id.buttonCharProfTitles)
+    Button buttonGoToTitles;
+
+    @BindView(R.id.imageViewCharacter)
+    ImageView imageViewChar;
+
     protected String characterName;
     protected String realm;
     protected int _class;
@@ -48,8 +55,6 @@ public class CharProfileActivity extends AppCompatActivity {
     private String imageUrl1;
     protected int acvPoints;
 
-    @BindView(R.id.imageViewCharacter)
-    ImageView imageViewChar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +92,12 @@ public class CharProfileActivity extends AppCompatActivity {
     @OnClick(R.id.imageViewMenu2)
     protected void openActivitySelect() {
         Intent i = new Intent(getApplicationContext(), ActivitySelectTopic.class);
+        startActivity(i);
+    }
+
+    @OnClick(R.id.buttonCharProfTitles)
+    protected void openTitlesActivity() {
+        Intent i = new Intent(getApplicationContext(), ActivityCharacterTitles.class);
         startActivity(i);
     }
 }

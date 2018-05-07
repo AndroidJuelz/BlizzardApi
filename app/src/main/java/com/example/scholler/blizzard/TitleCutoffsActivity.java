@@ -1,6 +1,5 @@
 package com.example.scholler.blizzard;
 
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,9 +14,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TitleCutoffsActivity extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener {
+public class TitleCutoffsActivity extends AppCompatActivity implements RecyclerViewCutoffsAdapter.ItemClickListener {
 
-    RecyclerViewAdapter recyclerViewAdapter;
+    RecyclerViewCutoffsAdapter recyclerViewAdapter;
 
     ArrayList<Integer> ratings;
 
@@ -38,16 +37,10 @@ public class TitleCutoffsActivity extends AppCompatActivity implements RecyclerV
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerViewAdapter = new RecyclerViewAdapter(this, ratings);
+        recyclerViewAdapter = new RecyclerViewCutoffsAdapter(this, ratings);
         recyclerView.setAdapter(recyclerViewAdapter);
 
 
 
     }
-
-    @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(getApplicationContext(), recyclerViewAdapter.getItem(position), Toast.LENGTH_SHORT).show();
-    }
-
 }
