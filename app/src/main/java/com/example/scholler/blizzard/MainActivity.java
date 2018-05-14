@@ -96,43 +96,40 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
         characterName = editTextChar.getText().toString();
 
 
-        if (itemSelectedNum == 5) {
-            Intent titles = new Intent(getApplicationContext(), TitleCutoffsActivity.class);
-            startActivity(titles);
-
-        } else if (itemSelectedNum == 3) {
-
-        } else {
-
-            if (realm.matches("") || characterName.matches("")) {
-                Toast toast = Toast.makeText(getApplicationContext(), "You must not leave fields empty", Toast.LENGTH_LONG);
-                //toast.getView().isShown();
-                toast.show();
+        if(itemSelectedNum == 1 || itemSelectedNum == 2 || itemSelectedNum == 4)
+        {
+            if(realm.matches("") || characterName.matches("")) {
+                Toast t = Toast.makeText(getApplicationContext(), "Do not leave fields empty", Toast.LENGTH_SHORT);
+                t.show();
                 return;
             }
         }
-//_____________________________________________________________________________________________________________________________
+//__________________________________________________________________________________________________
 //The code above is just to check if the fields are empty
 
         RetrofitClass retrofitClass = new RetrofitClass(this);
 
-        //TODo: change dynamic variables in some of the methods to the required ones
-        if(itemSelectedNum == 4) {
 
-            retrofitClass.sendApiRequestPvP(realm, characterName);
-
-        }else if(itemSelectedNum == 3) {
-
-            retrofitClass.sendApiRequestLeaderboard();
-
-        }else if(itemSelectedNum == 2) {
-
-            retrofitClass.sendApiRequestTitles(realm, characterName);
-
-        }else if(itemSelectedNum == 1) {
-
+        if(itemSelectedNum == 1)
+        {
             retrofitClass.sendApiRequestProfile(realm, characterName);
-
+        }
+        else if(itemSelectedNum == 2)
+        {
+            retrofitClass.sendApiRequestTitles(realm, characterName);
+        }
+        else if(itemSelectedNum == 3)
+        {
+            retrofitClass.sendApiRequestLeaderboard();
+        }
+        else if(itemSelectedNum == 4)
+        {
+            retrofitClass.sendApiRequestPvP(realm, characterName);
+        }
+        else if(itemSelectedNum == 5)
+        {
+            Intent titles = new Intent(getApplicationContext(), TitleCutoffsActivity.class);
+            startActivity(titles);
         }
     }
 
@@ -141,8 +138,48 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     public void onSuccess(JsonResponseModel.Scan model) {
 
 
-        if (model != null && itemSelectedNum == 4) {
+        if(model != null && itemSelectedNum == 1)
+        {
+            acvPoints = model.achievementPoints;
+            race = model.race;
+            _class = model._class;
+            imageUrl = model.thumbnail;
 
+
+            Intent i2 = new Intent(getApplicationContext(), CharProfileActivity.class);
+            i2.putExtra("realm", realm);
+            i2.putExtra("characterName", characterName);
+            i2.putExtra("acvpoints", acvPoints);
+            i2.putExtra("race", race);
+            i2.putExtra("class", _class);
+            i2.putExtra("thumbnail", imageUrl);
+            startActivity(i2);
+        }
+        else if(model != null && itemSelectedNum == 2)
+        {
+            for(int i = 0; i < model.titles.size(); i++) {
+                String tempString = model.titles.get(i).name;
+                testlist.add(tempString);
+            }
+
+
+            ArrayList<String> convertedTitles = (ArrayList<String>)testlist;
+            imageUrl = model.thumbnail;
+
+
+
+            Intent i = new Intent(getApplicationContext(), ActivityCharacterTitles.class);
+            i.putStringArrayListExtra("titles", convertedTitles);
+            i.putExtra("thumbnail", imageUrl);
+            i.putExtra("charactername", characterName);
+            startActivity(i);
+        }
+        else if(model != null && itemSelectedNum == 3)
+        {
+
+        }
+        else if(model != null && itemSelectedNum == 4)
+        {
             rating2v2 = model.pvp.brackets.aRENABRACKET2v2.getRating();
             rating3v3 = model.pvp.brackets.aRENABRACKET3v3.getRating();
 
@@ -166,55 +203,12 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
             i.putExtra("played3s", gamesPlayed3s);
             i.putExtra("won3s", gamesWon3s);
             startActivity(i);
-
-        } else if (model != null && itemSelectedNum == 3) {
-
-
-        } else if (model != null && itemSelectedNum == 2) {
-
-
-            for(int i = 0; i < model.titles.size(); i++) {
-                String tempString = model.titles.get(i).name;
-                testlist.add(tempString);
-            }
-
-
-            ArrayList<String> convertedTitles = (ArrayList<String>)testlist;
-            imageUrl = model.thumbnail;
-
-
-
-            Intent i = new Intent(getApplicationContext(), ActivityCharacterTitles.class);
-            i.putStringArrayListExtra("titles", convertedTitles);
-            i.putExtra("thumbnail", imageUrl);
-            i.putExtra("charactername", characterName);
-            startActivity(i);
-
-
-
-
-        } else if (model != null && itemSelectedNum == 1) {
-
-            acvPoints = model.achievementPoints;
-            race = model.race;
-            _class = model._class;
-            imageUrl = model.thumbnail;
-
-
-            Intent i2 = new Intent(getApplicationContext(), CharProfileActivity.class);
-            i2.putExtra("realm", realm);
-            i2.putExtra("characterName", characterName);
-            i2.putExtra("acvpoints", acvPoints);
-            i2.putExtra("race", race);
-            i2.putExtra("class", _class);
-            i2.putExtra("thumbnail", imageUrl);
-            startActivity(i2);
-
-        } else {
-
-            Toast.makeText(getApplicationContext(), "Couldn't load data. Check your inputs.", Toast.LENGTH_SHORT).show();
-
         }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Couldn't load data. Check your inputs.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

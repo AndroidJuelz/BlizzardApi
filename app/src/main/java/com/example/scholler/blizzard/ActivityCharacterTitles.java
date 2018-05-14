@@ -2,7 +2,6 @@ package com.example.scholler.blizzard;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,7 +10,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,16 +41,15 @@ public class ActivityCharacterTitles extends AppCompatActivity implements Serial
 
         receivedTitles = null;
 
-        if(getIntent().getExtras() != null) {
+        if (getIntent().getExtras() != null) {
 
             String URL = getIntent().getStringExtra("thumbnail");
             String baseUrl = "http://render-eu.worldofwarcraft.com/character/";
-            Picasso.get().load(baseUrl+URL).into(imageView);
+            Picasso.get().load(baseUrl + URL).into(imageView);
 
             receivedTitles = getIntent().getExtras().getStringArrayList("titles");
 
         }
-
 
         characterName = getIntent().getStringExtra("charactername");
 
@@ -64,7 +61,7 @@ public class ActivityCharacterTitles extends AppCompatActivity implements Serial
         //ToDo: There seems to be a bug with the length of receivedTitles
         //ToDo: Sometimes the length increases to more than it should
         //ToDo: Seems to happen when you go back in the activity which will cause the old and the new titles to be loaded
-        for(int i = 0; i < receivedTitles.size(); i++) {
+        for (int i = 0; i < receivedTitles.size(); i++) {
             textViewTitleList.append(receivedTitles.get(i)
                     .replace("%s", "")
                     .replace(",", ""));
@@ -73,7 +70,6 @@ public class ActivityCharacterTitles extends AppCompatActivity implements Serial
 
         Log.d("length", String.valueOf(receivedTitles.size()));
         Log.d("receivedtitles", receivedTitles.toString());
-
 
 
     }
