@@ -183,9 +183,11 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
             imageUrl = model.thumbnail;
 
 
+
             Intent i = new Intent(getApplicationContext(), ActivityCharacterTitles.class);
             i.putStringArrayListExtra("titles", convertedTitles);
             i.putExtra("thumbnail", imageUrl);
+            i.putExtra("charactername", characterName);
             startActivity(i);
 
 
