@@ -8,8 +8,6 @@ import com.example.scholler.blizzard.MainActivity;
 import com.example.scholler.blizzard.Model.JsonResponseLeaderboard;
 import com.example.scholler.blizzard.Model.JsonResponseModel;
 
-import java.util.Iterator;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -106,12 +104,6 @@ public class RetrofitClass extends MainActivity {
             public void onResponse(Call<JsonResponseModel.Scan> call, Response<JsonResponseModel.Scan> response) {
 
                 listener.onSuccess(response.body());
-
-                for(int i = 0; i < response.body().titles.size(); i++) {
-                    Log.d("supergau", String.valueOf(response.body().titles.get(i).name));
-                }
-
-
 
             }
 

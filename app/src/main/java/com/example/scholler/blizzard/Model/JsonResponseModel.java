@@ -1,8 +1,6 @@
 package com.example.scholler.blizzard.Model;
 
 
-import android.support.annotation.NonNull;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -407,7 +405,6 @@ public class JsonResponseModel {
 
 
     public class Title {
-
 
         @SerializedName("id")
         @Expose

@@ -28,29 +28,31 @@ public class RecyclerViewCutoffsAdapter extends RecyclerView.Adapter<RecyclerVie
 
 
 
-    // data is passed into the constructor
+
     RecyclerViewCutoffsAdapter(Context context, ArrayList<Integer> data) {
         this.mInflater = LayoutInflater.from(context);
         this.ratingsAlliance = data;
     }
 
-    // inflates the row layout from xml when needed
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
         return new ViewHolder(view);
     }
 
-    // binds the data to the TextView in each row
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
 
 
         if  (cutOffs == null) {
+
                 cutOffs = new CutOffs();
                 titleCutoffsActivity = new TitleCutoffsActivity();
-                }
+
+        }
 
 
         if(position < 5) {

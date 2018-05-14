@@ -4,12 +4,9 @@ package com.example.scholler.blizzard.networking;
 import com.example.scholler.blizzard.Model.JsonResponseLeaderboard;
 import com.example.scholler.blizzard.Model.JsonResponseModel;
 
-import java.util.HashMap;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface InterfaceAPI {
 

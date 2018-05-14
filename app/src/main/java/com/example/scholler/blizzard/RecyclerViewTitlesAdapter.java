@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class RecyclerViewTitlesAdapter extends RecyclerView.Adapter {
 
@@ -25,6 +26,8 @@ public class RecyclerViewTitlesAdapter extends RecyclerView.Adapter {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView textViewTitle;
 
 
         public ViewHolder(View itemView) {

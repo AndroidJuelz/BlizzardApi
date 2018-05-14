@@ -1,7 +1,8 @@
 package com.example.scholler.blizzard;
+
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +16,6 @@ import com.example.scholler.blizzard.Events.OnJsonResponseListener;
 import com.example.scholler.blizzard.Model.JsonResponseLeaderboard;
 import com.example.scholler.blizzard.Model.JsonResponseModel;
 import com.example.scholler.blizzard.networking.RetrofitClass;
-
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     private String imageUrl;
     private Integer rating2v2;
     private Integer rating3v3;
-    private int     charLevel;
-    private int     acvPoints;
+    private int charLevel;
+    private int acvPoints;
     private int gamesWon2s;
     private int gamesPlayed2s;
     private int gamesPlayed3s;
@@ -67,7 +67,9 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     public String itemSelected;
     public int itemSelectedNum;
 
-    public List<JsonResponseModel.Title> titles;
+    public ArrayList<String> titles;
+    public List<String> testlist;
+
 
 
     @Override
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.blizzdropdown, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        testlist = new ArrayList<>();
 
     }
 
@@ -102,10 +105,12 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
         } else {
 
             if (realm.matches("") || characterName.matches("")) {
-                    Toast.makeText(getApplicationContext(), "You must not leave fields empty", Toast.LENGTH_LONG).show();
-                    return;
+                Toast toast = Toast.makeText(getApplicationContext(), "You must not leave fields empty", Toast.LENGTH_LONG);
+                //toast.getView().isShown();
+                toast.show();
+                return;
+            }
         }
-    }
 //_____________________________________________________________________________________________________________________________
 //The code above is just to check if the fields are empty
 
@@ -136,40 +141,52 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     public void onSuccess(JsonResponseModel.Scan model) {
 
 
-            if (model != null && itemSelectedNum == 4) {
+        if (model != null && itemSelectedNum == 4) {
 
-                rating2v2 = model.pvp.brackets.aRENABRACKET2v2.getRating();
-                rating3v3 = model.pvp.brackets.aRENABRACKET3v3.getRating();
+            rating2v2 = model.pvp.brackets.aRENABRACKET2v2.getRating();
+            rating3v3 = model.pvp.brackets.aRENABRACKET3v3.getRating();
 
-                gamesPlayed2s = model.pvp.brackets.aRENABRACKET2v2.getSeasonPlayed();
-                gamesWon2s = model.pvp.brackets.aRENABRACKET2v2.getSeasonWon();
+            gamesPlayed2s = model.pvp.brackets.aRENABRACKET2v2.getSeasonPlayed();
+            gamesWon2s = model.pvp.brackets.aRENABRACKET2v2.getSeasonWon();
 
-                gamesPlayed3s = model.pvp.brackets.aRENABRACKET3v3.getSeasonPlayed();
-                gamesWon3s = model.pvp.brackets.aRENABRACKET3v3.getSeasonWon();
+            gamesPlayed3s = model.pvp.brackets.aRENABRACKET3v3.getSeasonPlayed();
+            gamesWon3s = model.pvp.brackets.aRENABRACKET3v3.getSeasonWon();
 
 
             Log.d("ApiResponse", model.pvp.brackets.aRENABRACKET3v3.getRating().toString());
             Log.d("ApiResponse", model.pvp.brackets.aRENABRACKET2v2.getRating().toString());
 
             Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
-                i.putExtra("realm", realm);
-                i.putExtra("characterName", characterName);
-                i.putExtra("rating2v2", rating2v2);
-                i.putExtra("rating3v3", rating3v3);
-                i.putExtra("played2s", gamesPlayed2s);
-                i.putExtra("won2s", gamesWon2s);
-                i.putExtra("played3s", gamesPlayed3s);
-                i.putExtra("won3s", gamesWon3s);
+            i.putExtra("realm", realm);
+            i.putExtra("characterName", characterName);
+            i.putExtra("rating2v2", rating2v2);
+            i.putExtra("rating3v3", rating3v3);
+            i.putExtra("played2s", gamesPlayed2s);
+            i.putExtra("won2s", gamesWon2s);
+            i.putExtra("played3s", gamesPlayed3s);
+            i.putExtra("won3s", gamesWon3s);
             startActivity(i);
 
         } else if (model != null && itemSelectedNum == 3) {
 
 
-
-
         } else if (model != null && itemSelectedNum == 2) {
 
-                titles = model.titles;
+
+            for(int i = 0; i < model.titles.size(); i++) {
+                String tempString = model.titles.get(i).name;
+                testlist.add(tempString);
+            }
+
+
+            ArrayList<String> convertedTitles = (ArrayList<String>)testlist;
+            imageUrl = model.thumbnail;
+
+
+            Intent i = new Intent(getApplicationContext(), ActivityCharacterTitles.class);
+            i.putStringArrayListExtra("titles", convertedTitles);
+            i.putExtra("thumbnail", imageUrl);
+            startActivity(i);
 
 
 
@@ -177,23 +194,23 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
         } else if (model != null && itemSelectedNum == 1) {
 
             acvPoints = model.achievementPoints;
-            race      = model.race;
-            _class    = model._class;
-            imageUrl  = model.thumbnail;
+            race = model.race;
+            _class = model._class;
+            imageUrl = model.thumbnail;
 
 
             Intent i2 = new Intent(getApplicationContext(), CharProfileActivity.class);
-                i2.putExtra("realm", realm);
-                i2.putExtra("characterName", characterName);
-                i2.putExtra("acvpoints", acvPoints);
-                i2.putExtra("race", race);
-                i2.putExtra("class", _class);
-                i2.putExtra("thumbnail", imageUrl);
+            i2.putExtra("realm", realm);
+            i2.putExtra("characterName", characterName);
+            i2.putExtra("acvpoints", acvPoints);
+            i2.putExtra("race", race);
+            i2.putExtra("class", _class);
+            i2.putExtra("thumbnail", imageUrl);
             startActivity(i2);
 
         } else {
 
-            Toast.makeText(getApplicationContext(), "Couldn't load data. Check your inputs.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Couldn't load data. Check your inputs.", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -277,6 +294,11 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     public void onUserInteraction() {
         super.onUserInteraction();
         userIsInteracting = true;
+
+    }
+
+    public void onPause() {
+        super.onPause();
 
     }
 
