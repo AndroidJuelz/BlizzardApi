@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     private String imageUrl;
     private Integer rating2v2;
     private Integer rating3v3;
+    private String selectedTitle;
     private int charLevel;
     private int acvPoints;
     private int gamesWon2s;
@@ -67,8 +68,9 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     public String itemSelected;
     public int itemSelectedNum;
 
-    public ArrayList<String> titles;
-    public List<String> testlist;
+    public ArrayList<String> convertedTitles;
+    public List<String> temporaryList;
+    public List<JsonResponseModel.Title> titles = null;
 
 
 
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.blizzdropdown, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        testlist = new ArrayList<>();
+        temporaryList = new ArrayList<>();
 
     }
 
@@ -154,25 +156,37 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
             i2.putExtra("class", _class);
             i2.putExtra("thumbnail", imageUrl);
             startActivity(i2);
+
         }
         else if(model != null && itemSelectedNum == 2)
         {
+
             for(int i = 0; i < model.titles.size(); i++) {
                 String tempString = model.titles.get(i).name;
-                testlist.add(tempString);
+                temporaryList.add(tempString);
             }
 
+            titles = model.titles;
 
-            ArrayList<String> convertedTitles = (ArrayList<String>)testlist;
+            //logic to check which title is selected
+            for(int i = 0; i < model.titles.size(); i++) {
+                if(titles.get(i).selected != null) {
+                    selectedTitle = titles.get(i).name;
+                }
+            }
+
+            Log.d("selectedtitle", selectedTitle);
+
+            convertedTitles = (ArrayList<String>) temporaryList;
             imageUrl = model.thumbnail;
-
-
 
             Intent i = new Intent(getApplicationContext(), ActivityCharacterTitles.class);
             i.putStringArrayListExtra("titles", convertedTitles);
             i.putExtra("thumbnail", imageUrl);
             i.putExtra("charactername", characterName);
+            i.putExtra("selectedtitle", selectedTitle);
             startActivity(i);
+
         }
         else if(model != null && itemSelectedNum == 3)
         {
@@ -180,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
         }
         else if(model != null && itemSelectedNum == 4)
         {
+
             rating2v2 = model.pvp.brackets.aRENABRACKET2v2.getRating();
             rating3v3 = model.pvp.brackets.aRENABRACKET3v3.getRating();
 
@@ -296,6 +311,14 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
     public void onPause() {
         super.onPause();
 
+    }
+
+    //Fixxes a conflict with overlapping of already loaded titles
+    public void onResume() {
+        super.onResume();
+        if(convertedTitles != null) {
+            convertedTitles.clear();
+        }
     }
 
 

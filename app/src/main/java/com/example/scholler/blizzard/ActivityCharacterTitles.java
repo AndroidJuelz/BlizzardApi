@@ -31,7 +31,7 @@ public class ActivityCharacterTitles extends AppCompatActivity implements Serial
     private ArrayList<String> receivedTitles;
 
     private String characterName;
-
+    private String selectedTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class ActivityCharacterTitles extends AppCompatActivity implements Serial
         setContentView(R.layout.activity_character_titles);
         ButterKnife.bind(this);
 
-        receivedTitles = null;
+        textViewTitleList.setText("");
 
         if (getIntent().getExtras() != null) {
 
@@ -47,20 +47,21 @@ public class ActivityCharacterTitles extends AppCompatActivity implements Serial
             String baseUrl = "http://render-eu.worldofwarcraft.com/character/";
             Picasso.get().load(baseUrl + URL).into(imageView);
 
+
             receivedTitles = getIntent().getExtras().getStringArrayList("titles");
+            selectedTitle  = getIntent().getStringExtra("selectedtitle");
 
         }
 
         characterName = getIntent().getStringExtra("charactername");
 
+        //ToDo: Find out how to correctly get the selected title, atm its only displaying the first(0)st title in the list
         textViewName.setText(characterName);
 
-        textViewSelected.setText(receivedTitles.get(0)
-                .replace("%s", ""));
+        textViewSelected.setText(selectedTitle.replace("%s", ""));
 
-        //ToDo: There seems to be a bug with the length of receivedTitles
-        //ToDo: Sometimes the length increases to more than it should
-        //ToDo: Seems to happen when you go back in the activity which will cause the old and the new titles to be loaded
+
+        //fills the title textview and replaces unwanted string parts
         for (int i = 0; i < receivedTitles.size(); i++) {
             textViewTitleList.append(receivedTitles.get(i)
                     .replace("%s", "")
@@ -74,14 +75,4 @@ public class ActivityCharacterTitles extends AppCompatActivity implements Serial
 
     }
 
-    //Trying to fix the problem with the additional titles by setting received titles null(not working so far)
-    protected void onStop() {
-        super.onStop();
-        receivedTitles = null;
-    }
-
-    protected void onResume() {
-        super.onResume();
-        receivedTitles = null;
-    }
 }

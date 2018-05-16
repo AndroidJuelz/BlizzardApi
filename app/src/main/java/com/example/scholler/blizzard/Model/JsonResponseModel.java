@@ -289,7 +289,6 @@ public class JsonResponseModel {
         public Integer totalHonorableKills;
 
 
-
         public String getName() {
             return name;
         }
@@ -440,8 +439,5 @@ public class JsonResponseModel {
             this.selected = selected;
         }
     }
-
-
-
 }
 
