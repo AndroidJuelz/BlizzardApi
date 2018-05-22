@@ -112,24 +112,19 @@ public class MainActivity extends AppCompatActivity implements OnJsonResponseLis
         RetrofitClass retrofitClass = new RetrofitClass(this);
 
 
-        if(itemSelectedNum == 1)
-        {
+        if(itemSelectedNum == 1) {
             retrofitClass.sendApiRequestProfile(realm, characterName);
         }
-        else if(itemSelectedNum == 2)
-        {
+        else if(itemSelectedNum == 2) {
             retrofitClass.sendApiRequestTitles(realm, characterName);
         }
-        else if(itemSelectedNum == 3)
-        {
+        else if(itemSelectedNum == 3) {
             retrofitClass.sendApiRequestLeaderboard();
         }
-        else if(itemSelectedNum == 4)
-        {
+        else if(itemSelectedNum == 4) {
             retrofitClass.sendApiRequestPvP(realm, characterName);
         }
-        else if(itemSelectedNum == 5)
-        {
+        else if(itemSelectedNum == 5) {
             Intent titles = new Intent(getApplicationContext(), TitleCutoffsActivity.class);
             startActivity(titles);
         }

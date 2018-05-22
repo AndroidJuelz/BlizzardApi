@@ -35,9 +35,6 @@ public class CharProfileActivity extends AppCompatActivity {
     @BindView(R.id.textViewRace)
     TextView textViewRace;
 
-    @BindView(R.id.buttonCharProfTitles)
-    Button buttonGoToTitles;
-
     @BindView(R.id.imageViewCharacter)
     ImageView imageViewChar;
 
@@ -93,10 +90,4 @@ public class CharProfileActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    @OnClick(R.id.buttonCharProfTitles)
-    protected void openTitlesActivity() {
-        Intent i = new Intent(getApplicationContext(), ActivityCharacterTitles.class);
-        i.putExtra("thumbnail", URL);
-        startActivity(i);
-    }
 }
